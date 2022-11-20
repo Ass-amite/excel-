@@ -1,1 +1,10 @@
-Ass-amite/excel-
+=LET(起始行,ROW(),
+当前列,COLUMN(),
+下一单元格,ADDRESS(起始行+1,当前列),
+查找终止单元格,ADDRESS(起始行+99,当前列),
+查找区域,INDIRECT(下一单元格&":"&查找终止单元格),
+终止行,ROW(INDEX(查找区域,MATCH(FALSE,ISBLANK(查找区域),0)))-1,
+起始单元格,ADDRESS(起始行,当前列-1),
+终止单元格,ADDRESS(终止行,当前列-1),
+目标区域,INDIRECT(起始单元格&":"&终止单元格),
+IF(COUNTIF(目标区域,"×")>0,"×","○"))
